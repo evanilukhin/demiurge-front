@@ -1,18 +1,7 @@
-
-<header>
-  <div>
-    <div id="nav" class="flex items-start justify-between flex-wrap p-3">
-      <div class="flex">
-        <a class="flex items-center px-3 py-2 border rounded text-teal-800 border-teal-800 hover:text-green hover:border-green mx-2" routerLink="/posts">Posts</a>
-        <a class="flex items-center px-3 py-2 border rounded text-teal-800 border-teal-800 hover:text-green hover:border-green mx-2" routerLink="/about">About</a>
-      </div>
-    </div>
+<div class="flex justify-center h-screen">
+  <div class="flex flex-col w-full xl:w-3/5">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </div>
-</header>
-
-<router-outlet></router-outlet>
-
-
-<footer>
-    Footer
-</footer>
+</div>

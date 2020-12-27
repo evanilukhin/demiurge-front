@@ -1,0 +1,63 @@
+# This file was generated based on "schema.json". Do not edit manually.
+
+schema {
+  query: RootQueryType
+  mutation: RootMutationType
+}
+
+type About {
+  baseInformation: String
+  extendedBio: String
+}
+
+type Comment {
+  author: String
+  commentId: ID
+  id: ID
+  insertedAt: String
+  postId: ID
+  text: String
+  updatedAt: String
+}
+
+type Post {
+  comments: [Comment]
+  headImage: String
+  header: String
+  id: ID
+  insertedAt: String
+  mainPart: String
+  short: Boolean
+  state: String
+  summary: String
+  tags: [String]
+  updatedAt: String
+}
+
+type PostPreview {
+  header: String
+  id: ID
+  insertedAt: String
+  short: Boolean
+  state: String
+  summary: String
+  tags: [String]
+}
+
+type RootMutationType {
+  "Create comment"
+  createComment(author: String!, commentId: Int, postId: Int, text: String!): Comment
+  "Create post"
+  createPost(headImage: String, header: String!, mainPart: String, short: Boolean, state: String, summary: String, tags: [String]): Post
+  "Update post"
+  updatePost(headImage: String, header: String!, id: ID!, mainPart: String, short: Boolean, summary: String, tags: [String]): Post
+}
+
+type RootQueryType {
+  "Get about"
+  about: About
+  "Get post"
+  post(id: ID!): Post
+  "Get posts"
+  posts(limit: Int, offset: Int, tag: String): [PostPreview]
+}
