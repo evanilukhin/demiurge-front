@@ -1,15 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Apollo, QueryRef, gql} from 'apollo-angular';
+import {Post} from "../app-types";
+import {Subscription} from "rxjs";
+
+const GET_POSTS = gql`
+  query getPosts($offset: Int, $limit: Int) {
+    posts(offset: $offset, limit: $limit){
+      id
+      summary
+    }
+  }
+`
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnDestroy {
+  loading: boolean;
+  posts: any[];
+  querySubscription: QueryRef<any>;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private apollo: Apollo) {
+    this.loading = true;
+    this.posts = [];
   }
 
+  ngOnInit() {
+    this.querySubscription = this.apollo.watchQuery<any>({
+      query: GET_POSTS,
+      variables: {
+        offset: 0,
+        limit: 3,
+      }
+    });
+    this.posts =
+      this.querySubscription
+        .valueChanges
+        .subscribe(({ data, loading }) => {
+          this.loading = loading;
+          this.posts = data.posts;
+        });
+  }
+
+  fetchMore() {
+    this.querySubscription.fetchMore({
+      // query: ... (you can specify a different query. feedQuery is used by default)
+      variables: {
+        offset: this.posts.length,
+      },
+      // We are able to figure out which offset to use because it matches
+      // the feed length, but we could also use state, or the previous
+      // variables to calculate this (see the cursor example below)
+      updateQuery: (prev: any, { fetchMoreResult } : any) => {
+        if (!fetchMoreResult) { return prev; }
+        return Object.assign({}, prev, {
+          posts: [...prev.posts, ...fetchMoreResult.posts],
+        });
+      },
+    });
+  }
+
+  ngOnDestroy() {
+    this.posts.unsubscribe();
+  }
 }
