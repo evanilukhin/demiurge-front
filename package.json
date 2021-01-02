@@ -25,6 +25,7 @@
     "apollo-angular": "^2.1.0",
     "autoprefixer": "^10.1.0",
     "graphql": "^15.4.0",
+    "ngx-markdown": "^11.0.1",
     "postcss": "^8.2.1",
     "postcss-scss": "^3.0.4",
     "rxjs": "~6.6.0",

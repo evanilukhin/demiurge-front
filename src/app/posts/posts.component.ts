@@ -20,32 +20,34 @@ const GET_POSTS = gql`
 export class PostsComponent implements OnInit, OnDestroy {
   loading: boolean;
   posts: any[];
-  querySubscription: QueryRef<any>;
+  queryRef: QueryRef<any>;
+  querySubscription: Subscription;
 
   constructor(private apollo: Apollo) {
     this.loading = true;
     this.posts = [];
+    this.queryRef = {} as QueryRef<any>;
+    this.querySubscription = {} as Subscription;
   }
 
   ngOnInit() {
-    this.querySubscription = this.apollo.watchQuery<any>({
+    this.queryRef = this.apollo.watchQuery<any>({
       query: GET_POSTS,
       variables: {
         offset: 0,
         limit: 3,
       }
     });
-    this.posts =
-      this.querySubscription
-        .valueChanges
-        .subscribe(({ data, loading }) => {
-          this.loading = loading;
-          this.posts = data.posts;
-        });
+    this.queryRef
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.posts = data.posts;
+      });
   }
 
   fetchMore() {
-    this.querySubscription.fetchMore({
+    this.queryRef.fetchMore({
       // query: ... (you can specify a different query. feedQuery is used by default)
       variables: {
         offset: this.posts.length,
@@ -63,6 +65,6 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.posts.unsubscribe();
+    this.querySubscription.unsubscribe();
   }
 }
