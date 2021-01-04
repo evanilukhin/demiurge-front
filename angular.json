@@ -39,6 +39,7 @@
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-ruby.min.js",
               "node_modules/prismjs/components/prism-elixir.min.js",
+              "node_modules/prismjs/components/prism-python.min.js",
               "node_modules/prismjs/components/prism-javascript.min.js",
               "node_modules/emoji-toolkit/lib/js/joypixels.min.js"
             ],
