@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
+import { LoginModalComponent } from "../login-modal/login-modal.component";
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: DialogService) { }
 
   ngOnInit(): void {
+
   }
 
+  open():void {
+    this.dialog.open(LoginModalComponent, {size: "sm"});
+  }
 }

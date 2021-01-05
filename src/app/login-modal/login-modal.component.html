@@ -1,0 +1,13 @@
+<div class="bg-white px-8 pt-6 pb-4 flex flex-col">
+  <div class="mb-6">
+    <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+      Password
+    </label>
+    <input #password class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="^&%*&^,%&^#*.$%%$$#^">
+  </div>
+  <div class="flex items-center justify-center">
+    <button (click)="submit(password.value)" class="bg-blue hover:bg-blue-dark text-white font-bold rounded" type="button">
+      Sign In
+    </button>
+  </div>
+</div>
