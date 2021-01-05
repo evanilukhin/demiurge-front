@@ -21,11 +21,11 @@ const GET_POST = gql`
 `;
 
 @Component({
-  selector: 'app-posts-show',
-  templateUrl: './posts-show.component.html',
-  styleUrls: ['./posts-show.component.scss']
+  selector: 'app-post-show',
+  templateUrl: './post-show.component.html',
+  styleUrls: ['./post-show.component.scss']
 })
-export class PostsShowComponent implements OnInit {
+export class PostShowComponent implements OnInit {
 
   private querySubscription: Subscription;
   post: Post;

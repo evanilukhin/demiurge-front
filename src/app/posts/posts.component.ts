@@ -1,13 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Apollo, QueryRef, gql} from 'apollo-angular';
-import {Post} from "../app-types";
+import {Post, PostPreview} from "../app-types";
 import {Subscription} from "rxjs";
 
 const GET_POSTS = gql`
   query getPosts($offset: Int, $limit: Int) {
     posts(offset: $offset, limit: $limit){
       id
+      tags
       summary
+      header
+      insertedAt
     }
   }
 `
@@ -19,7 +22,7 @@ const GET_POSTS = gql`
 })
 export class PostsComponent implements OnInit, OnDestroy {
   loading: boolean;
-  posts: any[];
+  posts: PostPreview[];
   queryRef: QueryRef<any>;
   querySubscription: Subscription;
 
@@ -38,12 +41,13 @@ export class PostsComponent implements OnInit, OnDestroy {
         limit: 3,
       }
     });
-    this.queryRef
-      .valueChanges
-      .subscribe(({ data, loading }) => {
-        this.loading = loading;
-        this.posts = data.posts;
-      });
+    this.querySubscription =
+      this.queryRef
+        .valueChanges
+        .subscribe(({ data, loading }) => {
+          this.loading = loading;
+          this.posts = data.posts;
+        });
   }
 
   fetchMore() {
@@ -65,6 +69,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('posts ngOnDestroy')
     this.querySubscription.unsubscribe();
   }
 }

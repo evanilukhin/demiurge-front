@@ -10,7 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { PostsComponent } from './posts/posts.component';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
-import { PostsShowComponent } from './posts/posts-show/posts-show.component';
+import { PostShowComponent } from './posts/post-show/post-show.component';
+import {SortPipe} from "./pipes/sort.pipe";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PostsShowComponent } from './posts/posts-show/posts-show.component';
     PostsComponent,
     AboutComponent,
     FooterComponent,
-    PostsShowComponent
+    PostShowComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,

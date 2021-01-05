@@ -18,7 +18,7 @@ export type Post = {
   header?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;
   insertedAt?: Maybe<Scalars['String']>;
-  mainPart?: Maybe<Scalars['String']>;
+  mainPart?: Scalars['String'] | undefined;
   short?: Maybe<Scalars['Boolean']>;
   state?: Maybe<Scalars['String']>;
   summary?: Maybe<Scalars['String']>;

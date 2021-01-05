@@ -3,10 +3,27 @@
 </div>
 <div *ngIf="posts">
   <div *ngFor="let post of posts">
-    <h1>{{ post.id }} </h1>
-    <p>
-      {{ post.summary }}
-    </p>
+    <div class="mt-6">
+      <div class="max-w-4xl px-10 py-6 bg-white rounded-lg shadow-md">
+        <div class="flex justify-between items-center">
+          <div class="flex">
+            <div *ngFor="let tag of (post.tags | sort)">
+              <p class="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500">#{{tag}}</p>
+            </div>
+          </div>
+          <span class="font-light text-gray-600">{{post.insertedAt | date: 'd/M/y'}}</span>
+        </div>
+        <div class="mt-2">
+          <a routerLink="/posts/{{post.id}}" class="text-2xl text-gray-700 font-bold hover:underline">
+            {{post.header}}
+          </a>
+          <p class="mt-2 text-gray-600"> {{post.summary}} </p>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <a routerLink="/posts/{{post.id}}" class="text-blue-500 hover:underline">Read more</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
