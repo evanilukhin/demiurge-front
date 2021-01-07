@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DialogService, DialogRef } from '@ngneat/dialog';
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-login-modal',
@@ -9,15 +10,12 @@ import { DialogService, DialogRef } from '@ngneat/dialog';
 })
 export class LoginModalComponent implements OnInit {
 
-  constructor(public ref: DialogRef, private dialog: DialogService) { }
+  constructor(public ref: DialogRef, private dialog: DialogService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   submit(password: string) {
-    this.dialog.success({
-      title: 'Hurray!',
-      body: '<h1>'+password+'</h1>'
-    });
+    this.authService.authenticate(password);
   }
 }

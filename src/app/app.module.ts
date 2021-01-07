@@ -15,6 +15,9 @@ import { PostShowComponent } from './posts/post-show/post-show.component';
 
 import { SortPipe } from "./pipes/sort.pipe";
 import { LoginModalComponent } from './login-modal/login-modal.component';
+import {AuthService} from "./auth.service";
+import { PostNewComponent } from './posts/post-new/post-new.component';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
     FooterComponent,
     PostShowComponent,
     SortPipe,
-    LoginModalComponent
+    LoginModalComponent,
+    PostNewComponent,
+    PostEditComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,7 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
     MarkdownModule.forRoot(),
     DialogModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@
         </div>
         <div class="flex justify-between items-center mt-4">
           <a routerLink="/posts/{{post.id}}" class="text-blue-500 hover:underline">Read more</a>
-          <a routerLink="/posts/{{post.id}}/edit" class="text-blue-500 hover:underline" >Edit</a>
+          <div *ngIf="this.authService.isLoggedIn()"><a routerLink="/posts/{{post.id}}/edit" class="text-blue-500 hover:underline" >Edit</a></div>
         </div>
       </div>
     </div>
