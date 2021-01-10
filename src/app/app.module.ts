@@ -18,6 +18,9 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
 import {AuthService} from "./auth.service";
 import { PostNewComponent } from './posts/post-new/post-new.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {TagInputModule} from "ngx-chips";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
     GraphQLModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
-    DialogModule.forRoot()
+    DialogModule.forRoot(),
+    ReactiveFormsModule,
+    TagInputModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
