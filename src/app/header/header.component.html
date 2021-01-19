@@ -1,13 +1,11 @@
-<div id="nav" class="flex items-start justify-between flex-wrap p-3">
-  <div class="flex">
-    <a class="border rounded text-primary-500 border-primary-700 background-transparent font-bold uppercase px-5 py-3 outline-none focus:outline-none mr-1 mb-1 hover:bg-red-700" type="button" style="transition: all .15s ease" routerLink="/posts">📖 Posts</a>
-    <a class="border rounded text-primary-500 border-primary-700 background-transparent font-bold uppercase px-5 py-3 outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" routerLink="/about">🙋‍♂️ About me</a>
-    <div *ngIf="this.authService.isLoggedIn()">
-      <a class="border rounded text-primary-500 border-primary-700 background-transparent font-bold uppercase px-5 py-3 outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" routerLink="/posts/new">Create Post</a>
-    </div>
+<div id="nav" class="flex justify-between p-3">
+  <div class="flex justify-start">
+    <a class="text-primary-500  background-transparent font-bold uppercase px-5 py-3 text-center outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" routerLink="/posts">📖&nbsp;Posts</a>
+    <a class="text-primary-500  background-transparent font-bold uppercase px-5 py-3 text-center outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" routerLink="/about">🙋‍♂️&nbsp;About&nbsp;me</a>
+    <a *ngIf="this.authService.isLoggedIn()" class="text-primary-500 background-transparent font-bold text-center uppercase px-5 py-3 outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" routerLink="/posts/new">Create Post</a>
   </div>
 
-  <div class="flex">
+  <div class="hidden sm:flex">
     <a href="https://steamcommunity.com/id/a01011001" target="_blank">
       <img class="icon" src="/assets/images/steam.png"/>
     </a>

@@ -1,5 +1,4 @@
 const colors = require('tailwindcss/colors')
-
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -11,6 +10,15 @@ module.exports = {
   ],
   theme: {
     colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.coolGray,
+      red: colors.red,
+      yellow: colors.amber,
+      blue: colors.blue,
+      pink: colors.pink,
       primary: colors.teal,
       secondary: colors.yellow,
       neutral: colors.gray,

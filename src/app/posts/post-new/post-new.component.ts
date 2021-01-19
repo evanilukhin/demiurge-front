@@ -3,7 +3,7 @@ import {Apollo, gql} from "apollo-angular";
 import {Subscription} from "rxjs";
 import {Post} from "../../app-types";
 import {ActivatedRoute} from "@angular/router";
-import {FormArray, FormBuilder} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 
 
 
@@ -68,6 +68,11 @@ export class PostNewComponent implements OnInit {
     },(error) => {
       console.log('there was an error sending the query', error);
     });
+  }
+
+  autoGrowTextZone(e: any) {
+    e.target.style.height = "0px";
+    e.target.style.height = (e.target.scrollHeight + 25)+"px";
   }
 
   ngOnDestroy() { }

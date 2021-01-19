@@ -17,5 +17,6 @@ export class LoginModalComponent implements OnInit {
 
   submit(password: string) {
     this.authService.authenticate(password);
+    this.ref.close()
   }
 }

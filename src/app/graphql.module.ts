@@ -8,11 +8,7 @@ import {AuthService} from "./auth.service";
 const uri = 'http://localhost:4000/api/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink, authService: AuthService): ApolloClientOptions<any> {
 
-  const basic = setContext((operation, context) => ({
-    headers: {
-      Accept: 'charset=utf-8'
-    }
-  }));
+  const basic = setContext((operation, context) => ({ }));
 
   const auth = setContext((operation, {headers}) => {
     console.log(authService.getToken())

@@ -99,6 +99,11 @@ export class PostEditComponent implements OnInit {
     });
   }
 
+  autoGrowTextZone(e: any) {
+    e.target.style.height = "0px";
+    e.target.style.height = (e.target.scrollHeight + 25)+"px";
+  }
+
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
   }

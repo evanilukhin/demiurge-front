@@ -1,36 +1,39 @@
-<form [formGroup]="postForm" class="max-w-3/4">
+<form [formGroup]="postForm" >
+  <div class="w-full">
 
-  <label>
+
+
+  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
     Title:
-    <input type="text" formControlName="header">
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="header">
   </label>
 
   <br/>
 
-  <label>
+  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
     Summary:
-    <input type="text" formControlName="summary">
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="summary">
   </label>
 
   <br/>
 
-  <label>
+  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
     Short?:
     <input type="checkbox" formControlName="short">
   </label>
 
   <br/>
 
-  <label>
+  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
     Tags:
     <tag-input formControlName="tags"></tag-input>
   </label>
 
   <br/>
 
-  <label class="max-w-3/4">
+  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
     Text:
-    <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"  formControlName="mainPart"></textarea>
+    <textarea  (keyup)="autoGrowTextZone($event)" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"  formControlName="mainPart"></textarea>
   </label>
 
   <div>
@@ -47,4 +50,5 @@
   <p>
     <button (click)="createPost()">Create Post</button>
   </p>
+  </div>
 </form>

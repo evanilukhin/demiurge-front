@@ -1,4 +1,4 @@
-<form [formGroup]="postForm" class="max-w-3/4">
+<form [formGroup]="postForm" class="min-w-full max-w-3/4">
 
   <label>
     Title:
@@ -30,7 +30,7 @@
 
   <label class="max-w-3/4">
     Text:
-    <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"  formControlName="mainPart"></textarea>
+    <textarea (keyup)="autoGrowTextZone($event)" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"  formControlName="mainPart"></textarea>
   </label>
 
   <div>

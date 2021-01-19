@@ -16,6 +16,7 @@ const GET_POSTS = gql`
     }
   }
 `
+const POSTS_PER_PAGE = 5;
 
 @Component({
   selector: 'app-posts',
@@ -40,7 +41,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       query: GET_POSTS,
       variables: {
         offset: 0,
-        limit: 3,
+        limit: POSTS_PER_PAGE,
       }
     });
     this.querySubscription =
@@ -57,6 +58,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       // query: ... (you can specify a different query. feedQuery is used by default)
       variables: {
         offset: this.posts.length,
+        limit: POSTS_PER_PAGE
       },
       // We are able to figure out which offset to use because it matches
       // the feed length, but we could also use state, or the previous

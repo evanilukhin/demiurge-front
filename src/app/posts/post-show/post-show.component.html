@@ -1,8 +1,8 @@
 <div *ngIf="loading">
   Loading...
 </div>
-<div *ngIf="post">
-  <div class="prose prose-lg max-w-3/4 self-center">
-    <markdown [data]="post.mainPart"></markdown>
-  </div>
+
+<div *ngIf="post" class="prose w-full lg:prose-xl self-center">
+  <markdown [data]="post.mainPart"></markdown>
 </div>
+
