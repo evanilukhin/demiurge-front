@@ -1,51 +1,56 @@
-<form [formGroup]="postForm" class="min-w-full max-w-3/4">
+<form [formGroup]="postForm" >
+  <div class="w-full">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+      Title:
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="header">
+    </label>
 
-  <label>
-    Title:
-    <input type="text" formControlName="header">
-  </label>
+    <br/>
 
-  <br/>
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+      Summary:
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="summary">
+    </label>
 
-  <label>
-    Summary:
-    <input type="text" formControlName="summary">
-  </label>
+    <br/>
 
-  <br/>
+    <label class="inline-flex items-center tracking-wide text-gray-700 text-xs font-bold mb-2" >
+      SHORT?:
+      <input type="checkbox" formControlName="short" class="form-checkbox h-5 w-5 text-blue-600 mx-3">
+    </label>
 
-  <label>
-    Short?:
-    <input type="checkbox" formControlName="short">
-  </label>
+    <br/>
 
-  <br/>
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+      Tags:
+      <tag-input formControlName="tags"></tag-input>
+    </label>
 
-  <label>
-    Tags:
-    <tag-input formControlName="tags"></tag-input>
-  </label>
+    <br/>
 
-  <br/>
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      Text:
+      <textarea  (keyup)="autoGrowTextZone($event)" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"  formControlName="mainPart"></textarea>
+    </label>
 
-  <label class="max-w-3/4">
-    Text:
-    <textarea (keyup)="autoGrowTextZone($event)" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"  formControlName="mainPart"></textarea>
-  </label>
+    <div class="flex space-x-2 ">
 
-  <div>
-    <button (click)="previewHidden = !previewHidden">
-      {{this.previewHidden ? 'Show Preview' : 'Hide Preview'}}
-    </button>
-    <div *ngIf="!previewHidden">
-      <div class="prose prose-lg max-w-3/4 self-center">
-        <markdown ngPreserveWhitespaces emoji [data]="this.postForm.get('mainPart')!.value"></markdown>
+      <button (click)="previewHidden = !previewHidden" class="flex-grow lg:flex-grow-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        {{this.previewHidden ? 'Show Preview' : 'Hide Preview'}}
+      </button>
+
+      <button (click)="updatePost()" class="flex-grow lg:flex-grow-0 bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded">
+        Create Post
+      </button>
+
+    </div>
+
+    <div>
+      <div *ngIf="!previewHidden">
+        <div class="prose prose-lg max-w-3/4 self-center">
+          <markdown ngPreserveWhitespaces emoji [data]="this.postForm.get('mainPart')!.value"></markdown>
+        </div>
       </div>
     </div>
   </div>
-
-
-  <p>
-    <button (click)="updatePost()">Update Post</button>
-  </p>
 </form>
