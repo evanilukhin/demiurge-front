@@ -28,7 +28,16 @@ jobs:
           node-version: '12'
       - run: yarn install
       - run: yarn run build_prod
-      - run: echo ls
       - uses: actions/upload-artifact@v2
         with:
+          name: demiurge-front
           path: dist/demiurge-front
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "dist/demiurge-front"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
