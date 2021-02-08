@@ -28,3 +28,7 @@ jobs:
           node-version: '12'
       - run: yarn install
       - run: yarn run build_prod
+      - run: echo ls
+      - uses: actions/upload-artifact@v2
+        with:
+          path: dist/demiurge-front
