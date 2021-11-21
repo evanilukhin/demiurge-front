@@ -4,6 +4,7 @@ import {Post, PostPreview} from "../app-types";
 import {Subscription} from "rxjs";
 import {DialogService} from "@ngneat/dialog";
 import {AuthService} from "../auth.service";
+import {Title} from "@angular/platform-browser";
 
 const GET_POSTS = gql`
   query getPosts($offset: Int, $limit: Int) {
@@ -29,11 +30,12 @@ export class PostsComponent implements OnInit, OnDestroy {
   queryRef: QueryRef<any>;
   querySubscription: Subscription;
 
-  constructor(private apollo: Apollo, public authService: AuthService) {
+  constructor(private apollo: Apollo, public authService: AuthService, private titleService: Title) {
     this.loading = true;
     this.posts = [];
     this.queryRef = {} as QueryRef<any>;
     this.querySubscription = {} as Subscription;
+    this.titleService = titleService;
   }
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class PostsComponent implements OnInit, OnDestroy {
           this.loading = loading;
           this.posts = data.posts;
         });
+    this.titleService.setTitle('Ivan Ilukhin - Posts')
   }
 
   fetchMore() {

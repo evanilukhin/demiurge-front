@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MarkdownModule } from 'ngx-markdown';
 import { DialogModule } from '@ngneat/dialog';
@@ -46,7 +46,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     TagInputModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
